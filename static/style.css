@@ -1,0 +1,42 @@
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+    text-align: center;
+}
+
+form {
+    margin: 20px;
+}
+
+select, input, button {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background: #ff3c3c;
+    color: white;
+    cursor: pointer;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    background: #1e293b;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 200px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
