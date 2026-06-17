@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Watchlist</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>📌 Your Watchlist</h1>
+
+<a href="/">⬅ Back</a>
+
+<div class="grid">
+    {% for movie in movies %}
+    <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster }}">
+        <h3>{{ movie.title }}</h3>
+
+        <p>⭐ Rating: {{ movie.rating }}</p>
+        <p>👁 Views: {{ movie.views }}</p>
+        <p>📅 Year: {{ movie.year }}</p>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

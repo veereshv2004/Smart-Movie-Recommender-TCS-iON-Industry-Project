@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Movie Recommender</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>🎬 Smart Movie Recommender</h1>
+
+<form method="GET">
+    
+    <!-- Language Filter -->
+    <select name="language">
+        <option value="">All Languages</option>
+        {% for name, code in languages.items() %}
+        <option value="{{code}}" {% if selected_lang == code %}selected{% endif %}>
+            {{name}}
+        </option>
+        {% endfor %}
+    </select>
+
+    <!-- Genre Filter -->
+    <select name="genre">
+        <option value="">All Genres</option>
+        {% for g in genres %}
+        <option value="{{g.id}}" {% if selected_genre == g.id|string %}selected{% endif %}>
+            {{g.name}}
+        </option>
+        {% endfor %}
+    </select>
+
+    <!-- Year Filter -->
+    <select name="year">
+        <option value="">All Years</option>
+        {% for y in years %}
+        <option value="{{y}}" {% if selected_year == y|string %}selected{% endif %}>
+            {{y}}
+        </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Filter</button>
+</form>
+
+<a href="/watchlist">📌 Watchlist</a>
+
+<div class="grid">
+    {% for movie in movies %}
+    <div class="card">
+        <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}">
+        
+        <h3>{{ movie.title }}</h3>
+
+        <p>⭐ Rating: {{ movie.vote_average }}</p>
+        <p>👁 Views: {{ movie.popularity }}</p>
+        <p>📅 Year: {{ movie.release_date[:4] if movie.release_date }}</p>
+
+        <!-- Add to Watchlist -->
+        <form action="/add_watchlist" method="post">
+            <input type="hidden" name="title" value="{{ movie.title }}">
+            <input type="hidden" name="poster" value="{{ movie.poster_path }}">
+            <input type="hidden" name="rating" value="{{ movie.vote_average }}">
+            <input type="hidden" name="views" value="{{ movie.popularity }}">
+            <input type="hidden" name="year" value="{{ movie.release_date[:4] if movie.release_date }}">
+            <button>Add to Watchlist</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>
